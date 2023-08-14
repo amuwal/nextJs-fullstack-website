@@ -13,6 +13,7 @@ export async function GET(req: NextRequest) {
         message: "user found",
         data: user
     })
+    console.log("user data")
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 400 });
   }

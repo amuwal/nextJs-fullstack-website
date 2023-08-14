@@ -29,9 +29,13 @@ const ProfilePage = () => {
   const [user, setUser] = useState();
 
   const setUserData = async () => {
-    const data = await axios.get("/api/userData");
-    console.log("hello", data);
-    setUser(data.data.data);
+    try {
+      const data = await axios.get("/api/userData");
+      console.log("hello", data);
+      setUser(data.data.data);
+    } catch (error: any) {
+      console.log(error.message);
+    }
   };
 
   if (!user) setUserData();
