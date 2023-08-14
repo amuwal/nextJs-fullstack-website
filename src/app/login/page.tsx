@@ -15,7 +15,7 @@ const LoginPage = () => {
     try {
       const res = await axios.post("/api/login", user);
       console.log("login success", res);
-      router.push("/");
+      router.push("/profile");
     } catch (error: any) {
       console.log("login failed", error.response.data);
     }
@@ -51,7 +51,7 @@ const LoginPage = () => {
       >
         Login
       </button>
-      <Link href={"/signup"}> Signup instead </Link>
+      <Link href={"/register"}> Register instead </Link>
     </div>
   );
 };

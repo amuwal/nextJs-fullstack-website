@@ -15,18 +15,21 @@ const userSchema = new mongoose.Schema({
     unique: [true, "user already exists with this email"],
     required: [true, "please provide an email"],
   },
-  isVerified: {
-    type: Boolean,
-    default: false,
-  },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
-  forgotPasswordToken: String,
-  forgotPasswordTokenExpiry: Date,
-  verifyToken: String,
-  verifyTokenExpiry: Date,
+  photo: { data: Buffer, contentType: String },
+  phone: { type: String },
+  about: { type: String },
+  skills: [{ type: String }],
+  certifications: [{ type: Object }],
+  experience: [
+    {
+      start: { type: Number, required: true },
+      end: { type: Number, required: true },
+      institute: { type: String, required: true },
+      course: { type: String, required: true },
+      details: { type: String, required: true },
+    },
+  ],
+  education: [{}],
 });
 
 const User = mongoose.models.users || mongoose.model("users", userSchema);
