@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+
+// components
 import ProfileImage from "@/components/ProfileImage";
 import BasicInfo from "@/components/BasicInfo";
 import AboutUser from "@/components/AboutUser";
@@ -12,6 +14,7 @@ import ExperienceComponent from "@/components/Experience";
 import EducationComponent from "@/components/Education";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
+import { setuid } from "process";
 
 const ProfilePage = () => {
   const router = useRouter();
@@ -40,23 +43,25 @@ const ProfilePage = () => {
 
   if (!user) setUserData();
 
+
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen text-black">
       <Navbar username="Jhon" />
       <div className="flex">
         <Sidebar />
         <div className="flex">
           <div>
             <ProfileImage />
-            <BasicInfo />
-            <AboutUser />
-            <Skills />
+            <BasicInfo user={user} setUser={setUser} />
+            <AboutUser user={user} setUser={setUser} />
+            <Skills user={user} setUser={setUser} />
           </div>
           <div>
             <ProfessionalDetailsHeader />
-            <Certifications />
-            <ExperienceComponent />
-            <EducationComponent />
+            <Certifications user={user} setUser={setUser} />
+            <ExperienceComponent user={user} setUser={setUser} />
+            <EducationComponent user={user} setUser={setUser} />
           </div>
         </div>
       </div>

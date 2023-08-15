@@ -24,12 +24,18 @@ const userSchema = new mongoose.Schema({
     {
       start: { type: Number, required: true },
       end: { type: Number, required: true },
-      institute: { type: String, required: true },
-      course: { type: String, required: true },
-      details: { type: String, required: true },
+      organization: { type: String, required: true },
+      role: { type: String, required: true },
+      jobTitle: { type: String, required: true },
     },
   ],
-  education: [{}],
+  education: [{
+    start: { type: Number, required: true },
+    end: { type: Number, required: true },
+    institute: { type: String, required: true },
+    course: { type: String, required: true },
+    details: { type: String, required: true },
+  },],
 });
 
 const User = mongoose.models.users || mongoose.model("users", userSchema);
