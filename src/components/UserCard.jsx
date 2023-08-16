@@ -8,7 +8,7 @@ const UserCard = ({ name, occupation, handleOnClick, buttonText, color }) => {
       <div className="mr-3">
         <h2 className="text-md font-semibold mb-2">{name}</h2>
         <p className="text-sm text-gray-600 mb-4">{occupation}</p>
-        <button onClick={handleOnClick} className={`text-sm px-4 py-2 bg-${color}-500 text-white rounded`}>{buttonText}</button>
+        <button onClick={handleOnClick} className={`text-sm px-4 py-2 bg-blue-500 bg-${color}-500 text-white rounded`}>{buttonText}</button>
       </div>
       <div>
         <img src={userImageUrl} alt="User" className="w-16 h-16 rounded-full" />

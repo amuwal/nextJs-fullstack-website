@@ -48,7 +48,9 @@ const UserDropdown = ({ username, handleLogout }) => {
         <img src={profileUrl} alt="Profile" className="w-10 h-10 rounded-lg" />
         <div className="ml-2">
           <p className="text-gray-600">Welcome back</p>
-          <p className="text-lg font-semibold">{username}</p>
+          <p className="text-lg font-semibold">
+            {username?.split(" ")[0] || ""}
+          </p>
         </div>
         <svg
           className="ml-2 h-5 w-5 text-gray-400"

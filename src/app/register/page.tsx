@@ -20,31 +20,12 @@ const RegisterPage = () => {
     password: false,
   });
 
-  //   const handleInputChange = (e: any) => {
-  //     const { name, value } = e.target;
-  //     setUser((prevUser) => ({ ...prevUser, [name]: value }));
-  //   };
 
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
     setErrorMessage("");
   };
-
-  //   const handleRegister = async () => {
-  //     if (isFormValid()) {
-  //   try {
-  //       console.log(user);
-  //       const res = await axios.post("/api/register", user);
-  //       console.log("register success", res);
-  //       router.push("/login")
-  //   } catch (error: any) {
-  //       setErrorMessage(error.response.data.error || "Something went wrong")
-  //   }
-  //     } else {
-  //       setErrorMessage("Invalid input. Please check your fields.");
-  //     }
-  //   };
 
   const handleRegister = async () => {
     let areInputsValid = true;

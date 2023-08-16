@@ -20,6 +20,7 @@ export async function GET(req: NextRequest) {
         (connections && connections.includes(user.email))  
       )  continue;
       suggestions.push(user);
+      if (suggestions.length === 3) break
     }
     return NextResponse.json({
       message: "suggestions found",

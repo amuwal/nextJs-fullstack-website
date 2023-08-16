@@ -4,33 +4,50 @@ import { FaPencilAlt } from "react-icons/fa";
 
 const EditModal = ({ curKey, prevValue, handleSaveClick, setIsEditing }) => {
   const [value, setValue] = useState(prevValue);
+  const isDummyUser = prevValue === "jhon@gmail.com";
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-75 bg-gray-900">
       <div className="bg-white p-6 rounded-md shadow-md">
-        <h2 className="text-lg font-semibold mb-4">Edit Profile</h2>
-        <label className="block mb-2">
-          {curKey + ":"}
-          <input
-            type="text"
-            className="w-full border rounded p-2"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
-        </label>
-        <div className="mt-4 flex justify-end">
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded"
-            onClick={() => handleSaveClick(curKey, value)}
-          >
-            Save
-          </button>
-          <button
-            className="ml-2 px-4 py-2 border rounded"
-            onClick={() => setIsEditing(false)}
-          >
-            Cancel
-          </button>
-        </div>
+        {isDummyUser ? (
+          <>
+            <h2 className="text-lg font-semibold mb-4">
+              Cannot update dummy user email
+            </h2>
+            <button
+              className="ml-2 px-4 py-2 border rounded"
+              onClick={() => setIsEditing(false)}
+            >
+              Cancel
+            </button>
+          </>
+        ) : (
+          <>
+            <h2 className="text-lg font-semibold mb-4">Edit Profile</h2>
+            <label className="block mb-2">
+              {curKey + ":"}
+              <input
+                type="text"
+                className="w-full border rounded p-2"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+              />
+            </label>
+            <div className="mt-4 flex justify-end">
+              <button
+                className="px-4 py-2 bg-blue-500 text-white rounded"
+                onClick={() => handleSaveClick(curKey, value)}
+              >
+                Save
+              </button>
+              <button
+                className="ml-2 px-4 py-2 border rounded"
+                onClick={() => setIsEditing(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
@@ -56,7 +73,7 @@ const BasicInfo = ({ user, setUser }) => {
     }
     if (key === "email") {
       setEmail(value);
-      updated.email = email;
+      updated.email = value;
     }
     if (key === "phone") {
       setPhone(value);

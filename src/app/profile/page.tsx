@@ -80,7 +80,11 @@ const ProfilePage = () => {
     setUserData();
   }, []);
 
-  return (
+  return user.username === "" ? (
+    <div className="flex justify-center items-center h-screen bg-black">
+        <div className="border-t-4 border-pink-500 border-solid rounded-full animate-spin h-12 w-12"></div>
+      </div>
+  ) : (
     <div className="min-h-screen text-black flex bg-slate-100">
       <Sidebar
         activeSection={activeSection}

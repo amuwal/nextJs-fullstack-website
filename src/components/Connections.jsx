@@ -3,8 +3,8 @@ import UserCard from "./UserCard";
 import axios from "axios";
 
 const ConnectionsSection = ({ user, setUser }) => {
-  const [connections, setConnetions] = useState([]);
-  const [suggestedConnections, setSuggestedConnections] = useState([]);
+  const [connections, setConnetions] = useState(null);
+  const [suggestedConnections, setSuggestedConnections] = useState(null);
 
   const initializeConnections = async () => {
     try {
@@ -22,10 +22,10 @@ const ConnectionsSection = ({ user, setUser }) => {
         const connectedUser = await axios.post("/api/getUserInfoByEmail", {
           email: email,
         });
-        newConnections.push(connectedUser.data.user)
+        newConnections.push(connectedUser.data.user);
       }
-      setConnetions(newConnections)
-      console.log(newConnections)
+      setConnetions(newConnections);
+      console.log(newConnections);
     } catch (error) {
       console.log(error.message);
     }
@@ -37,6 +37,8 @@ const ConnectionsSection = ({ user, setUser }) => {
 
   const handleOnClick = async (index, sourceSection) => {
     // Let's make this concise later
+
+    setConnetions(null);
     if (sourceSection === "connections") {
       const newConnections = connections.filter((_, i) => i !== index);
       const newConnectionIds = [];
@@ -55,7 +57,12 @@ const ConnectionsSection = ({ user, setUser }) => {
     }
   };
 
-  return (
+  return connections === null ? (
+    <div className="h-screen flex justify-center items-center bg-black z-50">
+
+      <div className="border-t-4 border-pink-500 border-solid rounded-full animate-spin h-12 w-12"></div>
+    </div>
+  ) : (
     <div className="p-6 bg-white rounded-md shadow-md flex flex-grow flex-col bg-gray  z-0 overflow-auto">
       <div className="mb-6 px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-md font-semibold shadow-md">
         Your Connections
