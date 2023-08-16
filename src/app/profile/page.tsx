@@ -55,7 +55,7 @@ const ProfilePage = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("/api/logout");
+      await axios.post("/api/logout");
       console.log("User logged out successfully");
       router.push("/login");
     } catch (error: any) {
