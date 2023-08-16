@@ -1,5 +1,7 @@
 # Assignment 01
 
+[Go to live deployment](https://assignment-01-delta.vercel.app/)
+
 Hi, this is an assignment I was told to do for an internship position.
 
 Welcome to Assignment 01! This project is a web application built using React, Next.js, Tailwind CSS, TypeScript, and MongoDB. It provides a platform for users to create and manage their profiles, connections, and suggested connections.
