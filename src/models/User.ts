@@ -29,13 +29,19 @@ const userSchema = new mongoose.Schema({
       jobTitle: { type: String, required: true },
     },
   ],
-  education: [{
-    start: { type: Number, required: true },
-    end: { type: Number, required: true },
-    institute: { type: String, required: true },
-    course: { type: String, required: true },
-    details: { type: String, required: true },
-  },],
+  education: [
+    {
+      start: { type: Number, required: true },
+      end: { type: Number, required: true },
+      institute: { type: String, required: true },
+      course: { type: String, required: true },
+      details: { type: String, required: true },
+    },
+  ],
+  connections: [{ type: String }],
+  occupation: {
+    type: String,
+  },
 });
 
 const User = mongoose.models.users || mongoose.model("users", userSchema);

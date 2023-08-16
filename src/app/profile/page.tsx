@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import Connections from "@/components/Connections";
 
 // components
 import ProfileImage from "@/components/ProfileImage";
@@ -15,11 +16,33 @@ import EducationComponent from "@/components/Education";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import { setuid } from "process";
+import { connections } from "mongoose";
+
+const Profile = (props: any) => {
+  const { user, setUser } = props;
+  return (
+    <div className="flex flex-col md:flex-row">
+      <div>
+        <ProfileImage />
+        <BasicInfo user={user} setUser={setUser} />
+        <AboutUser user={user} setUser={setUser} />
+        <Skills user={user} setUser={setUser} />
+      </div>
+      <div>
+        <ProfessionalDetailsHeader />
+        <Certifications user={user} setUser={setUser} />
+        <ExperienceComponent user={user} setUser={setUser} />
+        <EducationComponent user={user} setUser={setUser} />
+      </div>
+    </div>
+  );
+};
 
 const ProfilePage = () => {
   const router = useRouter();
+  const [activeSection, setActiveSection] = useState("profile");
 
-  const logout = async () => {
+  const handleLogout = async () => {
     try {
       await axios.get("/api/logout");
       console.log("User logged out successfully");
@@ -29,7 +52,7 @@ const ProfilePage = () => {
     }
   };
 
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({ username: "" });
 
   const setUserData = async () => {
     try {
@@ -41,36 +64,29 @@ const ProfilePage = () => {
     }
   };
 
-  if (!user) setUserData();
-
-
+  //   if (!user) setUserData();
+  useEffect(() => {
+    setUserData();
+  }, []);
 
   return (
-    <div className="min-h-screen text-black">
-      <Navbar username="Jhon" />
-      <div className="flex">
-        <Sidebar />
-        <div className="flex">
-          <div>
-            <ProfileImage />
-            <BasicInfo user={user} setUser={setUser} />
-            <AboutUser user={user} setUser={setUser} />
-            <Skills user={user} setUser={setUser} />
-          </div>
-          <div>
-            <ProfessionalDetailsHeader />
-            <Certifications user={user} setUser={setUser} />
-            <ExperienceComponent user={user} setUser={setUser} />
-            <EducationComponent user={user} setUser={setUser} />
-          </div>
-        </div>
+    <div className="min-h-screen text-black flex">
+      <Sidebar
+        activeSection={activeSection}
+        setActiveSection={setActiveSection}
+      />
+      <div className="flex flex-col flex-grow">
+        <Navbar
+          setActiveSection={setActiveSection}
+          username={user.username}
+          handleLogout={handleLogout}
+        />
+        {activeSection === "profile" ? (
+          <Profile user={user} setUser={setUser} />
+        ) : (
+          <Connections user={user} setUser={setUser} />
+        )}
       </div>
-      <button
-        onClick={logout}
-        className="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-semibold py-2 px-4 rounded"
-      >
-        Logout
-      </button>
     </div>
   );
 };

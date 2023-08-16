@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const Sidebar = () => {
-  const [activeSection, setActiveSection] = useState('profile'); // Default: 'profile'
+const Sidebar = ({ activeSection, setActiveSection }) => {
+  //   const [activeSection, setActiveSection] = useState('profile'); // Default: 'profile'
 
   const handleSectionClick = (section) => {
     setActiveSection(section);
@@ -12,15 +12,20 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="bg-white text-gray-800 w-64 p-4 shadow flex flex-col">
+    <aside className="bg-white text-gray-800 w-64 p-4 flex flex-col min-h-screen hidden md:flex">
       <nav>
         <ul>
+          <li className="mb-12 p-5 pl-10">
+            <h1 className="text-lg font-bold">Dashboard</h1>
+          </li>
           <li className="mb-4">
             <button
               className={`flex items-center ${
-                activeSection === 'profile' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'
+                activeSection === "profile"
+                  ? "text-gray-900 font-semibold"
+                  : "text-gray-600 hover:text-gray-900"
               }`}
-              onClick={() => handleSectionClick('profile')}
+              onClick={() => handleSectionClick("profile")}
             >
               <svg
                 className="h-6 w-6 mr-2"
@@ -29,7 +34,12 @@ const Sidebar = () => {
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
               </svg>
               Profile
             </button>
@@ -37,9 +47,11 @@ const Sidebar = () => {
           <li className="mb-4">
             <button
               className={`flex items-center ${
-                activeSection === 'connections' ? 'text-gray-900 font-semibold' : 'text-gray-600 hover:text-gray-900'
+                activeSection === "connections"
+                  ? "text-gray-900 font-semibold"
+                  : "text-gray-600 hover:text-gray-900"
               }`}
-              onClick={() => handleSectionClick('connections')}
+              onClick={() => handleSectionClick("connections")}
             >
               <svg
                 className="h-6 w-6 mr-2"
@@ -48,7 +60,12 @@ const Sidebar = () => {
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
               </svg>
               Connections
             </button>
@@ -57,7 +74,7 @@ const Sidebar = () => {
       </nav>
       <div className="flex-grow"></div>
       <button
-        className="block w-full text-center text-gray-600 hover:text-gray-900 py-2"
+        className="block w-full text-center text-gray-600 hover:text-gray-900 py-2 mb-5"
         onClick={handleLogout}
       >
         Logout
