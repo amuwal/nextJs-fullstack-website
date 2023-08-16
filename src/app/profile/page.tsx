@@ -55,6 +55,7 @@ const ProfilePage = () => {
 
   const handleLogout = async () => {
     try {
+      setUser({username: ""});
       await axios.post("/api/logout");
       console.log("User logged out successfully");
       router.push("/login");
@@ -82,8 +83,8 @@ const ProfilePage = () => {
 
   return user.username === "" ? (
     <div className="flex justify-center items-center h-screen bg-black">
-        <div className="border-t-4 border-pink-500 border-solid rounded-full animate-spin h-12 w-12"></div>
-      </div>
+      <div className="border-t-4 border-pink-500 border-solid rounded-full animate-spin h-12 w-12"></div>
+    </div>
   ) : (
     <div className="min-h-screen text-black flex bg-slate-100">
       <Sidebar
