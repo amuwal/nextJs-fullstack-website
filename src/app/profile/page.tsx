@@ -41,7 +41,7 @@ const ProfileSection = (props: any) => {
 
   return (
     <div className="relative bg-slate-100 flex flex-col align-center z-0 overflow-auto flex-grow">
-      <div className="bg-slate-500 h-40"></div>
+      <div className="bg-slate-700 h-40"></div>
       <div className="absolute top-20  bg-white m-5 rounded-lg p-5 overflow-auto">
         <Profile user={user} setUser={setUser} />
       </div>
