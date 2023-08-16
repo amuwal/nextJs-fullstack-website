@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 
-const Sidebar = ({ activeSection, setActiveSection }) => {
+const Sidebar = ({ activeSection, setActiveSection, handleLogout }) => {
   //   const [activeSection, setActiveSection] = useState('profile'); // Default: 'profile'
 
   const handleSectionClick = (section) => {
     setActiveSection(section);
-  };
-
-  const handleLogout = () => {
-    // Implement your logout logic here
   };
 
   return (

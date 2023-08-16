@@ -4,56 +4,109 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
+// const onLogin = async () => {
+//     try {
+//       const res = await axios.post("/api/login", user);
+//       console.log("login success", res);
+//       router.push("/profile");
+//     } catch (error: any) {
+//       console.log("login failed", error.response.data);
+//     }
+//   };
+
 const LoginPage = () => {
-  const router = useRouter();
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
-
-  const onLogin = async () => {
-    try {
-      const res = await axios.post("/api/login", user);
-      console.log("login success", res);
-      router.push("/profile");
-    } catch (error: any) {
-      console.log("login failed", error.response.data);
-    }
+    const router = useRouter();
+    const [user, setUser] = useState({
+      email: '',
+      password: '',
+    });
+  
+    const [invalidInputs, setInvalidInputs] = useState({
+      email: false,
+      password: false,
+    });
+  
+    const [errorMessage, setErrorMessage] = useState('');
+  
+    const handleInputChange = (event: any) => {
+      const { name, value } = event.target;
+      setUser({ ...user, [name]: value });
+      setInvalidInputs({ ...invalidInputs, [name]: false });
+      setErrorMessage('');
+    };
+  
+    const handleLogin = async () => {
+      let areInputsValid = true;
+  
+      if (user.email.trim() === '') {
+        areInputsValid = false;
+        setInvalidInputs({ ...invalidInputs, email: true });
+      }
+  
+      if (user.password.trim() === '') {
+        areInputsValid = false;
+        setInvalidInputs({ ...invalidInputs, password: true });
+      }
+  
+      if (areInputsValid) {
+        try {
+            const res = await axios.post("/api/login", user);
+            console.log("login success", res);
+            router.push("/profile");
+          } catch (error: any) {
+            setErrorMessage(error.response.data.error)
+          }
+        setErrorMessage('');
+      } else {
+        setErrorMessage('Invalid email or password');
+      }
+    };
+  
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <div className="bg-gray-800 p-8 rounded-lg shadow-md w-80">
+          <h2 className="text-2xl font-semibold text-white mb-4">Login</h2>
+          <input
+            type="email"
+            name="email"
+            value={user.email}
+            onChange={handleInputChange}
+            className={`w-full p-2 mb-4 rounded-md ${
+              invalidInputs.email ? 'border-red-500' : 'border-gray-700'
+            } focus:border-blue-500 focus:ring focus:ring-blue-200 text-white bg-gray-700`}
+            placeholder="Email"
+            autoComplete="off"
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            value={user.password}
+            onChange={handleInputChange}
+            className={`w-full p-2 mb-4 rounded-md ${
+              invalidInputs.password ? 'border-red-500' : 'border-gray-700'
+            } focus:border-blue-500 focus:ring focus:ring-blue-200 text-white bg-gray-700`}
+            placeholder="Password"
+            required
+          />
+          <button
+            className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
+            onClick={handleLogin}
+          >
+            Login
+          </button>
+          {errorMessage && (
+            <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
+          )}
+          <p className="text-sm text-gray-300 mt-2">
+            Dont have an account?{' '}
+            <Link  className="text-blue-500 hover:underline" href="/register">
+              Register
+            </Link>
+          </p>
+        </div>
+      </div>
+    );
   };
-
-  return (
-    <div className="text-white bg-slate-800 flex flex-col min-h-screen py-2 justify-center items-center">
-      <div>
-        <input
-          className="p-2 border border-gray-300 rounder-lg mb-4 focus:outline-none focus:border-gray-600 text-black"
-          type="text"
-          placeholder="email"
-          name="email"
-          id="email"
-          value={user.email}
-          onChange={(e) => setUser({ ...user, email: e.target.value })}
-        />
-      </div>
-      <div>
-        <input
-          className="p-2 border border-gray-300 rounder-lg mb-4 focus:outline-none focus:border-gray-600  text-black"
-          type="password"
-          placeholder="password"
-          name="password"
-          id="password"
-          value={user.password}
-          onChange={(e) => setUser({ ...user, password: e.target.value })}
-        />
-      </div>
-      <button
-        onClick={onLogin}
-        className="p-2 border border-gray-300 rounder-lg mb-4 focus:otuline-none focus:border-gray-600"
-      >
-        Login
-      </button>
-      <Link href={"/register"}> Register instead </Link>
-    </div>
-  );
-};
 
 export default LoginPage;

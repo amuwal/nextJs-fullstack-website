@@ -85,6 +85,7 @@ const ProfilePage = () => {
       <Sidebar
         activeSection={activeSection}
         setActiveSection={setActiveSection}
+        handleLogout={handleLogout}
       />
       <div className="flex flex-col flex-grow md:min-h-screen md:max-h-screen">
         <Navbar
