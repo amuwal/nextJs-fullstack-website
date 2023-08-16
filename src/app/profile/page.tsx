@@ -15,8 +15,6 @@ import ExperienceComponent from "@/components/Experience";
 import EducationComponent from "@/components/Education";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
-import { setuid } from "process";
-import { connections } from "mongoose";
 
 const Profile = (props: any) => {
   const { user, setUser } = props;
@@ -33,6 +31,19 @@ const Profile = (props: any) => {
         <Certifications user={user} setUser={setUser} />
         <ExperienceComponent user={user} setUser={setUser} />
         <EducationComponent user={user} setUser={setUser} />
+      </div>
+    </div>
+  );
+};
+
+const ProfileSection = (props: any) => {
+  const { user, setUser } = props;
+
+  return (
+    <div className="relative bg-slate-100 flex flex-col align-center z-0 overflow-auto flex-grow">
+      <div className="bg-slate-500 h-40"></div>
+      <div className="absolute top-20  bg-white m-5 rounded-lg p-5 overflow-auto">
+        <Profile user={user} setUser={setUser} />
       </div>
     </div>
   );
@@ -70,19 +81,19 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen text-black flex">
+    <div className="min-h-screen text-black flex bg-slate-100">
       <Sidebar
         activeSection={activeSection}
         setActiveSection={setActiveSection}
       />
-      <div className="flex flex-col flex-grow">
+      <div className="flex flex-col flex-grow md:min-h-screen md:max-h-screen">
         <Navbar
           setActiveSection={setActiveSection}
           username={user.username}
           handleLogout={handleLogout}
         />
         {activeSection === "profile" ? (
-          <Profile user={user} setUser={setUser} />
+          <ProfileSection user={user} setUser={setUser} />
         ) : (
           <Connections user={user} setUser={setUser} />
         )}

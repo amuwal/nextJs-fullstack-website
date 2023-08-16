@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import updateUser from "@/helpers/updateUser";
+import { FaPencilAlt } from "react-icons/fa";
 
 const EditModal = ({ curKey, prevValue, handleSaveClick, setIsEditing }) => {
   const [value, setValue] = useState(prevValue);
@@ -59,12 +60,12 @@ const BasicInfo = ({ user, setUser }) => {
     }
     if (key === "phone") {
       setPhone(value);
-      updated.phone(value);
+      updated.phone = value;
     }
 
     const res = await updateUser(updated);
     setUser(updated);
-    
+
     setIsEditing(false);
   };
 
@@ -75,42 +76,42 @@ const BasicInfo = ({ user, setUser }) => {
   }, [user]);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md m-4">
-      <div className="space-y-4">
+    <div className="bg-white p-6 rounded-lg shadow-md m-3">
+      <div className="space-y-3">
         <div className="flex justify-between items-center">
           <div className="flex flex-col">
-            <p className="text-gray-500 font-semibold">Name</p>
-            <p className="text-black">{name}</p>
+            <p className="text-gray-500 font-semibold text-sm">Name</p>
+            <p className="text-black text-sm">{name}</p>
           </div>
           <button
             onClick={() => handleEditClick("username")}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded-full"
+            className="hover:bg-blue-600 hover:text-white text-black p-2 rounded "
           >
-            Edit
+            <FaPencilAlt />
           </button>
         </div>
         <div className="flex justify-between items-center">
           <div className="flex flex-col">
-            <p className="text-gray-500 font-semibold">Email</p>
-            <p className="text-black">{email}</p>
+            <p className="text-gray-500 font-semibold text-sm">Email</p>
+            <p className="text-black text-sm">{email}</p>
           </div>
           <button
             onClick={() => handleEditClick("email")}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded-full"
+            className="hover:bg-blue-600 hover:text-white text-black p-2 rounded "
           >
-            Edit
+            <FaPencilAlt />
           </button>
         </div>
         <div className="flex justify-between items-center">
           <div className="flex flex-col">
-            <p className="text-gray-500 font-semibold">Phone</p>
-            <p className="text-black">{phone || "Not set"}</p>
+            <p className="text-gray-500 font-semibold text-sm">Phone</p>
+            <p className="text-black text-sm">{phone || "Not set"}</p>
           </div>
           <button
             onClick={() => handleEditClick("phone")}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded-full"
+            className="hover:bg-blue-600 hover:text-white text-black p-2 rounded "
           >
-            Edit
+            <FaPencilAlt />
           </button>
         </div>
         {isEditing && (

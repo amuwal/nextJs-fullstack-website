@@ -16,7 +16,7 @@ const Hamburger = ({ setActiveSection }) => {
   };
 
   return (
-    <div className="md:hidden relative">
+    <div className="md:hidden relative z-10">
       <div className="flex items-center justify-end p-4">
         <FaBars className="text-gray-500 cursor-pointer" onClick={toggleMenu} />
       </div>

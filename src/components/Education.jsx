@@ -1,5 +1,6 @@
 import updateUser from "@/helpers/updateUser";
 import React, { useState } from "react";
+import { FaPencilAlt } from "react-icons/fa";
 
 const EditEducationModal = ({ hideModal, educationData, onSave }) => {
     const [editedEducations, setEditedEducations] = useState([...educationData]);
@@ -46,9 +47,10 @@ const EditEducationModal = ({ hideModal, educationData, onSave }) => {
   
     return (
       <div className="fixed inset-0 flex items-center justify-center z-50 bg-opacity-75 bg-gray-900">
-        <div className="bg-white p-6 rounded-md shadow-md max-h-[80vh] overflow-y-auto w-96">
+        <div className="bg-white p-6 rounded-md shadow-md w-96">
           <h2 className="text-lg font-semibold mb-4">Edit Education</h2>
-  
+  <div className=" max-h-[25vh] overflow-y-auto">
+
           {editedEducations.map((education, index) => (
             <div key={index} className="mb-4 flex align-center justify-between items-center">
               <div className="flex flex-col">
@@ -67,8 +69,9 @@ const EditEducationModal = ({ hideModal, educationData, onSave }) => {
               </button>
             </div>
           ))}
+  </div>
   
-          <div className="border p-4 rounded">
+          <div className="border p-4 rounded]">
             <input
               type="text"
               placeholder="Institute"
@@ -146,15 +149,15 @@ const EducationItem = ({ education }) => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-      <h2 className="text-2xl font-semibold text-blue-600 mb-2">{institute}</h2>
+      <h2 className="text-xl font-semibold text-blue-600 mb-2">{institute}</h2>
       <div className="flex items-center mb-2">
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-sm">
           {start}-{end}
         </p>
-        <p className="text-gray-600 mx-2">•</p>
-        <p className="text-gray-600">{course}</p>
+        <p className="text-gray-600 text-sm mx-2">•</p>
+        <p className="text-gray-600 text-sm">{course}</p>
       </div>
-      <p className="text-gray-600">{details}</p>
+      <p className="text-gray-600 text-sm">{details}</p>
     </div>
   );
 };
@@ -169,11 +172,11 @@ const EducationComponent = ({ user, setUser }) => {
   };
   const educations = user?.education;
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 m-4">
+    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 m-3">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-semibold">Education</h2>
-        <button onClick={()=>setShowModal(true)} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded-full">
-          Edit
+        <h2 className="text-xl font-semibold">Education</h2>
+        <button onClick={()=>setShowModal(true)} className="hover:bg-blue-600 hover:text-white text-black p-2 rounded ">
+          <FaPencilAlt />
         </button>
       </div>
       <div>

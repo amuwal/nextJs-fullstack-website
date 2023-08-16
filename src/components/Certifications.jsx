@@ -1,5 +1,6 @@
 import updateUser from "@/helpers/updateUser";
 import React, { useState } from "react";
+import { FaPencilAlt } from "react-icons/fa";
 
 const EditCertificationsModal = ({ hideModal, certifications, onSave }) => {
   const [newCertification, setNewCertification] = useState({
@@ -140,8 +141,8 @@ const Certificate = ({ courseName, organization }) => {
         className="w-10 h-10"
       />
       <div>
-        <p className="text-lg font-semibold">{courseName}</p>
-        <p className="text-gray-600">{organization}</p>
+        <p className="text-md font-semibold">{courseName}</p>
+        <p className="text-gray-600 text-sm">{organization}</p>
       </div>
     </div>
   );
@@ -159,14 +160,14 @@ const Certifications = ({ user, setUser }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 m-4">
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-semibold">Certifications</h2>
+    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 m-3">
+      <div className="flex items-center justify-between mb-3">
+        <h2 className="text-xl font-semibold">Certifications</h2>
         <button
           onClick={() => setModalActive(true)}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded-full"
+          className="hover:bg-blue-600 hover:text-white text-black p-2 rounded "
         >
-          Edit
+          <FaPencilAlt/>
         </button>
       </div>
       <div>
@@ -178,7 +179,7 @@ const Certifications = ({ user, setUser }) => {
                 organization={cert.organization}
               />
             ))
-          : "No certifications, Bro is a loser"}
+          : "No certifications, Bro is a loser (jk)"}
       </div>
       {modalActive && (
         <EditCertificationsModal

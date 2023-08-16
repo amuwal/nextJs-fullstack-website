@@ -1,5 +1,6 @@
 import updateUser from "@/helpers/updateUser";
 import React, { useState } from "react";
+import { FaPencilAlt } from "react-icons/fa";
 
 const EditExperienceModal = ({ hideModal, experiences, onSave }) => {
     const [editedExperiences, setEditedExperiences] = useState([...experiences]);
@@ -150,16 +151,16 @@ const ExperienceItem = ({ experience }) => {
 
   return (
     <div className="flex items-center justify-between mb-4">
-      <div className="flex items-center space-x-4 flex-grow">
+      <div className="flex items-center space-x-3 flex-grow">
         <img src={iconUrl} alt="Experience Icon" className="w-10 h-10" />
         <div>
-          <p className="text-lg font-semibold">
+          <p className="text-md font-semibold">
             {start}-{end}
           </p>
-          <p className="text-gray-600">{role}</p>
+          <p className="text-gray-600 text-sm">{role}</p>
         </div>
       </div>
-      <div className="flex-grow text-right">
+      <div className="flex-grow text-right text-sm">
         <p className="text-gray-600">{organization}</p>
         <p className="text-gray-600">{jobTitle}</p>
       </div>
@@ -178,20 +179,20 @@ const ExperienceComponent = ({ user, setUser }) => {
   };
   const experiences = user?.experience
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 m-4">
+    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 m-3">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-semibold">Experience</h2>
+        <h2 className="text-xl font-semibold">Experience</h2>
         <button
           onClick={() => setModalActive(true)}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded-full"
+          className="hover:bg-blue-600 hover:text-white text-black p-2 rounded "
         >
-          Edit
+          <FaPencilAlt />
         </button>
       </div>
       <div>
         {experiences?.length ? experiences.map((exp, index) => (
           <ExperienceItem key={index} experience={exp} />
-        )) : "This guy got not experience lol"}
+        )) : "This guy got not experience lol (jk)"}
       </div>
       {modalActive && (
         <EditExperienceModal

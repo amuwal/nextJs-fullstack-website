@@ -21,7 +21,7 @@ const NotificationIcon = () => {
         />
       </button>
       {showNotifications && (
-        <div className="absolute right-0 mt-2 bg-white p-4 shadow-md w-56">
+        <div className="absolute z-10 left-0 mt-2 bg-white p-4 shadow-md w-56 md:right-0">
           {/* Render your notifications content here */}
           <p className="mb-2 text-gray-600">
             8 people checked your profile today.
@@ -32,7 +32,6 @@ const NotificationIcon = () => {
   );
 };
 
-
 const UserDropdown = ({ username, handleLogout }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -41,7 +40,7 @@ const UserDropdown = ({ username, handleLogout }) => {
   };
 
   return (
-    <div className="relative inline-block text-right">
+    <div className="relative z-10 text-right">
       <div
         className="flex items-center cursor-pointer"
         onClick={toggleDropdown}
@@ -64,10 +63,10 @@ const UserDropdown = ({ username, handleLogout }) => {
         </svg>
       </div>
       {isDropdownOpen && (
-        <div className="absolute right-0 mt-2 bg-white border rounded-lg shadow-md">
+        <div className="absolute right-0 mt-2 bg-white rounded-lg shadow-md">
           <button
             onClick={handleLogout}
-            className="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-semibold py-2 px-4 rounded"
+            className="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-semibold py-2 px-4 rounded-lg"
           >
             Logout
           </button>

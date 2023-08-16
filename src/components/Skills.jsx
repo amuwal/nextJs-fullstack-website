@@ -1,4 +1,4 @@
-import updateUser from "@/helpers/updateUser";
+import { FaPencilAlt } from "react-icons/fa";
 import axios from "axios";
 import React, { useState } from "react";
 
@@ -102,17 +102,18 @@ const Skills = ({ user, setUser }) => {
     setShowModal(false);
   };
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 m-4">
+    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 m-3">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-semibold">Skills</h2>
+        <h2 className="text-xl font-semibold">Skills</h2>
         <button
           onClick={() => setShowModal(true)}
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded-full"
+          className="hover:bg-blue-600 hover:text-white text-black p-2 rounded "
         >
-          Edit
+        <FaPencilAlt />
+          
         </button>
       </div>
-      <ul className="list-disc ml-6">
+      <ul className="list-disc ml-6 text-sm">
         {user?.skills?.map((skill, index) => (
           <li key={index} className="text-gray-600">
             {skill}

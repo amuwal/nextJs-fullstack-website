@@ -36,6 +36,7 @@ const ConnectionsSection = ({ user, setUser }) => {
   }, [user]);
 
   const handleOnClick = async (index, sourceSection) => {
+    // Let's make this concise later
     if (sourceSection === "connections") {
       const newConnections = connections.filter((_, i) => i !== index);
       const newConnectionIds = [];
@@ -55,11 +56,11 @@ const ConnectionsSection = ({ user, setUser }) => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-md shadow-md flex flex-grow flex-col bg-gray">
+    <div className="p-6 bg-white rounded-md shadow-md flex flex-grow flex-col bg-gray  z-0 overflow-auto">
       <div className="mb-6 px-4 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-md font-semibold shadow-md">
         Your Connections
       </div>
-      <div className="m-6 flex flex-wrap">
+      <div className="m-4 flex flex-wrap">
         {!connections || connections.length === 0 ? (
           <p className="text-gray-600">You have no connections yet.</p>
         ) : (

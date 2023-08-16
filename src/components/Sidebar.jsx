@@ -12,7 +12,7 @@ const Sidebar = ({ activeSection, setActiveSection }) => {
   };
 
   return (
-    <aside className="bg-white text-gray-800 w-64 p-4 flex flex-col min-h-screen hidden md:flex">
+    <aside className="bg-white text-gray-800 w-1/5 p-4 flex flex-col min-h-screen hidden md:flex">
       <nav>
         <ul>
           <li className="mb-12 p-5 pl-10">

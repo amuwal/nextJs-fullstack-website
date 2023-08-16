@@ -1,5 +1,6 @@
 import { useState } from "react";
 import updateUser from "@/helpers/updateUser";
+import { FaPencilAlt } from "react-icons/fa";
 
 const EditModal = ({ prevValue, handleSaveClick, setIsEditing }) => {
   const [value, setValue] = useState(prevValue);
@@ -52,19 +53,19 @@ const AboutUser = ({ user, setUser }) => {
     setIsEditing(false);
   };
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 m-4">
+    <div className="bg-white p-4 rounded-lg shadow-md border border-gray-200 m-3">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-semibold">
+        <h2 className="text-xl font-semibold">
           About{" "}
           <span className="bg-gradient-to-r text-transparent bg-clip-text from-yellow-400 to-red-500">
-            {user?.username}
+            {user?.username.split(" ")[0]}
           </span>
         </h2>
-        <button onClick={handleEditClick} className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1 px-3 rounded-full">
-          Edit
-        </button>
+        <button onClick={handleEditClick} className="hover:bg-blue-600 hover:text-white text-black p-2 rounded ">
+        <FaPencilAlt />
+      </button>
       </div>
-      <p className="text-gray-600">{user?.about || "No bio set"}</p>
+      <p className="text-gray-600 text-sm">{user?.about || "No bio set"}</p>
       {isEditing && (
         <EditModal
           prevValue={user?.about}
