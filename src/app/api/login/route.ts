@@ -43,8 +43,8 @@ export async function POST(req: NextRequest) {
     };
 
     // create Token to store in cookies
-    const token = await jwt.sign(tokenData, process.env.JWT_TOKEN_KEY!, {
-      expiresIn: "1d",
+    const token = jwt.sign(tokenData, process.env.JWT_TOKEN_KEY!, {
+        
     });
 
     const res = NextResponse.json({
